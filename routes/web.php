@@ -24,3 +24,5 @@ Route::get('/about', [studentController::class, 'about']);
 Route::get('/register', [studentController::class, 'register']);
 
 Route::post('/register', [studentController::class, 'create']);
+
+Route::get('/view/student', [studentController::class, 'studentView']);
