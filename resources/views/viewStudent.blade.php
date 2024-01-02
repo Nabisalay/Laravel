@@ -16,6 +16,8 @@
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Password</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Update</th>
               </tr>
             </thead>
             <tbody>
@@ -26,6 +28,12 @@
                 <td>{{$key->name}}</td>
                 <td>{{$key->email}}</td>
                 <td>{{$key->password}}</td>
+                <td><form action="{{ route('delete.user', ['id' => $key->id]) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this user?')">
+                  @csrf
+                  @method('DELETE')
+                  <button class="btn btn-danger" type="submit">Delete</button>
+              </form></td>
+                <td><a class="btn btn-primary" href="">update</a></td>
               </tr>
               @endforeach
 

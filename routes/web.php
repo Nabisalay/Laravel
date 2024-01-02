@@ -26,3 +26,5 @@ Route::get('/register', [studentController::class, 'register']);
 Route::post('/register', [studentController::class, 'create']);
 
 Route::get('/view/student', [studentController::class, 'studentView']);
+
+Route::delete('/deleteuser/{id}', [studentController::class, 'delete'])->name('delete.user');

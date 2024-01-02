@@ -8,17 +8,21 @@ use App\Models\stdModel;
 class StudentController extends Controller
 {
     //
-    public function index() {
+    public function index()
+    {
         return view('welcome');
     }
 
-    public function about() {
+    public function about()
+    {
         return view('about');
     }
-    public function register() {
+    public function register()
+    {
         return view('register');
     }
-    public function create(Request $request) {
+    public function create(Request $request)
+    {
         // print_r($request->all());
         // return view('register');
         $request->validate([
@@ -36,9 +40,24 @@ class StudentController extends Controller
         return redirect('/register');
     }
 
-    public function studentView() {
+    public function studentView()
+    {
         $data = stdModel::all();
         $stdData = compact('data');
         return view('viewStudent')->with($stdData);
+    }
+
+    public function delete(Request $request, $id)
+    {
+        $user = stdModel::find($id);
+
+        if (!$user) {
+            // Handle if the user with the given ID is not found
+            return redirect('/view/student')->with('error', 'User not found.');
+        }
+
+        $user->delete();
+
+        return redirect('/view/student')->with('success', 'User deleted successfully.');
     }
 }
